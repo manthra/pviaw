@@ -22,13 +22,12 @@ public class Board {
 
 	}
 
-	
-	public enum Player { Black, White}
-	
-	
+	public enum Player {
+		Black, White
+	}
+
 	Player currentPlayer, nextPlayer;
-	
-	
+
 	public void Name(String strName) {
 
 		this.strName = strName;
@@ -47,7 +46,6 @@ public class Board {
 
 	}
 
-	
 	public Player getNextPlayer() {
 
 		return nextPlayer;
@@ -236,21 +234,23 @@ public class Board {
 		return isValid;
 	}
 
-	
-	
-	
-	
-
-	
 	public boolean Move(String strNotation) {
 
 		PointFT pnt = new PointFT(strNotation);
-		
-		
-		
-		
-		
-		if (isValidMove(pnt.getRowFrom(), pnt.getColumnFrom(), pnt.getRowTo(), pnt.getColumnTo(), strP)) {
+
+		int rF = pnt.getRowFrom();
+		int cF = pnt.getColumnFrom();
+		int rT = pnt.getRowTo();
+		int cT = pnt.getColumnTo();
+		String strP;
+
+		if (currentPlayer == Player.Black) {
+			strP = "B";
+		} else {
+			strP = "W";
+		}
+
+		if (isValidMove(rF, cF, rT, cT, strP)) {
 
 			System.out.println("Valid");
 
@@ -265,9 +265,6 @@ public class Board {
 		return true;
 	}
 
-	
-	
-	
 	public boolean Move(int rF, int cF, int rT, int cT, String strP) {
 
 		if (isValidMove(rF, cF, rT, cT, strP)) {
@@ -329,8 +326,8 @@ public class Board {
 
 		}
 
-		nextPlayer=Player.White;
-		
+		currentPlayer = Player.White;
+
 	}
 
 }

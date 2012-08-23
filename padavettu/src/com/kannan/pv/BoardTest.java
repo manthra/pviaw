@@ -20,6 +20,11 @@ public class BoardTest {
 		Board brd= new Board();
 		brd.renderBoard();
 		
+		
+		brd.Move(4, 3, 3, 3, "W");
+		brd.renderBoard();
+		
+		
 		brd.Move(4, 3, 3, 3, "W");
 		brd.renderBoard();
 		
