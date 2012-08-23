@@ -1,5 +1,9 @@
 package com.kannan.pv;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class BoardTest {
 
 	/**
@@ -21,10 +25,70 @@ public class BoardTest {
 		brd.renderBoard();
 		
 		
-		brd.Move(4, 3, 3, 3, "W");
+		String strNotation="";
+		InputStreamReader converter = new InputStreamReader(System.in);
+		BufferedReader in = new BufferedReader(converter);
+		
+		while (!(strNotation.equals("quit"))) {
+			try {
+				strNotation = in.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if (!(strNotation.equals("quit"))) {
+		
+				brd.Move(strNotation);
+				brd.renderBoard();
+
+				
+				
+			}
+		}
+		
+		
+		/*brd.Move("d3d4");
+		brd.renderBoard();
+
+		brd.Move("d5d3");
+		brd.renderBoard();
+
+		
+		brd.Move("d2d4");
+		brd.renderBoard();
+
+		brd.Move("d4d3"); //invalid
+		brd.renderBoard();
+
+
+		brd.Move("e3d3");
+		brd.renderBoard();
+*/		
+		
+		
+/*		brd.Move("e3d3");
 		brd.renderBoard();
 		
 		
+		brd.Move("d3e3");
+		brd.renderBoard();
+		
+		brd.Move("d4e3");
+		brd.renderBoard();
+		
+		brd.Move("d3d4");
+		brd.renderBoard();
+		
+
+		brd.Move("d3d4");
+		brd.renderBoard();
+		
+		brd.Move("e3d3");
+		brd.renderBoard();
+
+		
+*/		/*
 		brd.Move(4, 3, 3, 3, "W");
 		brd.renderBoard();
 		
@@ -57,7 +121,7 @@ public class BoardTest {
 		
 		
 		System.out.println("B" + brd.getPoints("B")+"_W" + brd.getPoints("W"));
-		
+*/		
 		
 		
 /*		showBoard();

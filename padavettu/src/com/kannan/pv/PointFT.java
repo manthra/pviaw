@@ -30,21 +30,25 @@ public class PointFT {
 
 	public int getColumnFrom() {
 
+		System.out.print(cF);
 		return cF;
 	}
 
 	public int getRowFrom() {
 
+		System.out.print(rF);
 		return rF;
 	}
 
 	public int getColumnTo() {
 
+		System.out.print(cT);
 		return cT;
 	}
 
 	public int getRowTo() {
 
+		System.out.print(cT);
 		return rT;
 	}
 
