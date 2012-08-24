@@ -6,39 +6,26 @@ public class Board {
 		Init();
 	}
 	
-	
 
 	String[][] strCell = new String[7][7];
 	boolean isValid = true;
 	boolean IsLastCapture=false;
+	
+	boolean isEnd=false;
+	
+	
 	
 	String strName = "";
 	int xPos = 0;
 	int yPos = 0;
 	String strNone = "_";
 	String strBlank = " ";
-	String strBlack = "B";
-	String strWhite = "W";
 
-	public String Name() {
-
-		return strName;
-
-	}
-
-	public enum Player {
-		Black, White, None
-	}
-
-	Player currentPlayer, nextPlayer, previousPlayer;
-
-	public void Name(String strName) {
-
-		this.strName = strName;
-
-	}
-
+		
 	
+	Player currentPlayer, nextPlayer, previousPlayer, won;
+
+		
 	public void renderBoard() {
 
 		System.out.println("----------------------------------------------------------");
@@ -50,6 +37,12 @@ public class Board {
 			System.out.print("\n\n");
 		}
 		System.out.println("----------------------------------------------------------");
+		
+		if (isEnd){
+			System.out.println(won.name() + " won the game!" );
+		} else{
+			System.out.println(currentPlayer.name() + " to Move" );
+		}
 	}
 
 	
@@ -59,249 +52,7 @@ public class Board {
 		return nextPlayer;
 	}
 
-	private String getOpponent(String strP) {
-
-		if (strP.equals(strBlack)) {
-			return strWhite;
-
-		} else {
-
-			return strBlack;
-		}
-
-	}
-
-	private Player getOpponent(Player cPlayer) {
-
-		Player pRet;
-		if (cPlayer.equals(Player.Black)){
-			pRet=Player.White;
-			
-		}else{
-			pRet=Player.Black;
-		}
 		
-		return pRet;
-		
-	}
-	
-	
-	
-	
-	
-	public boolean isValidMove(int rF, int cF, int rT, int cT) {
-
-		boolean isValid = false;
-		String strP;
-		
-
-		if (strCell[rF][cF].equals("W")) {
-			currentPlayer=Player.White;
-			strP = "W";
-		} else {
-			currentPlayer=Player.Black;
-			strP = "B";
-		}
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if (strCell[rF][cF].equals(strP)) {
-
-			//System.out.println("ONE");
-
-			// all right left top bottom are valid
-
-			if (cF == cT && rF != rT) { // same column diff row -- rowwise
-										// movement
-
-				System.out.println("same column");
-				if (rF == rT - 1) { // bottom
-					System.out.println("bottom");
-					isValid = true;
-
-				}
-
-				if (rF == rT + 1) { // top
-					System.out.println("top");
-					isValid = true;
-				}
-
-				if ((rF == rT - 2)
-						&& strCell[rF + 1][cF].equals(getOpponent(strP))) { // bottom
-																			// cut
-					System.out.println("bottom cut");
-					isValid = true;
-					strCell[rF + 1][cF] = strBlank;
-
-				}
-
-				if ((rF == rT + 2)
-						&& strCell[rF - 1][cF].equals(getOpponent(strP))) { // top
-																			// cut
-					System.out.println("top cut");
-					isValid = true;
-					strCell[rF - 1][cF] = strBlank;
-				}
-
-			} else { // diff column
-
-				if (cF != cT && rF == rT) { // same row diff column --
-											// columnwise movement
-
-					System.out.println("diff column");
-					if (cF == cT - 1) { // right
-						System.out.println("right");
-						isValid = true;
-
-					}
-
-					if (cF == cT + 1) { // top
-						System.out.println("left");
-						isValid = true;
-					}
-
-					if ((cF == cT - 2)
-							&& strCell[rF][cF + 1].equals(getOpponent(strP))) { // right
-																				// cut
-						System.out.println("right cut");
-						isValid = true;
-						strCell[rF][cF + 1] = strBlank;
-					}
-
-					if ((cF == cT + 2)
-							&& strCell[rF][cF - 1].equals(getOpponent(strP))) { // left
-																				// cut
-						System.out.println("left cut");
-						isValid = true;
-						strCell[rF][cF - 1] = strBlank;
-					}
-
-				} else { // diff column diff row -- diagonal movements
-
-					if (cF != cT && rF != rT) { // diff row diff column --
-
-						System.out.println("diagonal move");
-
-						if ((cF == cT - 1) && (rF == rT - 1)) { // bottm right
-							System.out.println("bottm right");
-							isValid = true;
-
-						}
-
-						if ((cF == cT + 1) && (rF == rT - 1)) { // bottm right
-							System.out.println("bottm left");
-							isValid = true;
-
-						}
-
-						if ((cF == cT + 1) && (rF == rT + 1)) { // top left
-							System.out.println("top left");
-							isValid = true;
-
-						}
-
-						if ((cF == cT - 1) && (rF == rT + 1)) { // top right
-							System.out.println("top right");
-							isValid = true;
-
-						}
-
-						// diagonal cut start
-
-						// Not tested
-						if ((cF == cT - 2)
-								&& (rF == rT - 2)
-								&& strCell[rF + 1][cF + 1]
-										.equals(getOpponent(strP))) { // bottm
-																		// right
-																		// cut
-							strCell[rF + 1][cF + 1] = strBlank;
-							System.out.println("bottm right cut");
-							isValid = true;
-
-						}
-
-						// Correct
-						if ((cF == cT + 2)
-								&& (rF == rT + 2)
-								&& strCell[rF - 1][cF - 1]
-										.equals(getOpponent(strP))) { // top
-																		// left
-																		// cut
-							strCell[rF - 1][cF - 1] = strBlank;
-							System.out.println("top left cut");
-							isValid = true;
-
-						}
-
-						// Not tested
-						if ((cF == cT + 2)
-								&& (rF == rT - 2)
-								&& strCell[rF + 1][cF - 1]
-										.equals(getOpponent(strP))) { // bottm
-																		// left
-																		// cut
-							strCell[rF + 1][cF - 1] = strBlank;
-							System.out.println("bottm left cut");
-							isValid = true;
-
-						}
-
-						// Not tested
-						if ((cF == cT - 2)
-								&& (rF == rT + 2)
-								&& strCell[rF - 1][cF + 1]
-										.equals(getOpponent(strP))) { // top
-																		// right
-																		// cut
-							strCell[rF - 1][cF + 1] = strBlank;
-							System.out.println("top right cut");
-							isValid = true;
-
-						}
-
-						// diagonal cut end
-
-					}
-				}
-
-			}
-
-		}
-
-		
-		
-		if (isValid) {
-
-			System.out.println("Valid");
-
-			strCell[rF][cF] = strBlank;
-			strCell[rT][cT] = strP;
-
-		} else {
-
-			System.out.println("inValid");
-		}
-
-		
-		
-		
-		return isValid;
-	}
-
-	
-	
-	
-	
-	
 	
 	
 	public boolean isValidMove(PointFT pnt) {
@@ -311,6 +62,9 @@ public class Board {
 		int rT = pnt.getRowTo();
 		int cT = pnt.getColumnTo();
 
+		
+		
+		
 		/*PointFT pp = new PointFT(rF, cF, rT, cT);
 		
 		System.out.println("NNN" + pp.getNotation());
@@ -322,18 +76,23 @@ public class Board {
 		int cCapture = 0;
 		int rCapture = 0;
 
-		String strP;
+		//String strP;
 
-		if (strCell[rF][cF].equals("W")) {
-			currentPlayer = Player.White;
-			strP = "W";
+/*		if (strCell[rF][cF].equals("W")) {
+			currentPlayer = Player.WHITE;
+			
 		} else {
-			currentPlayer = Player.Black;
-			strP = "B";
+			currentPlayer = Player.BLACK;
+			
 		}
-
+*/		
+		//strP = currentPlayer.getChar();
 		
-		if (strCell[rF][cF].equals(strP)) {
+/*		System.out.println("CP " + currentPlayer.getChar());
+		
+		System.out.println("PP " + previousPlayer.getChar());
+*/
+		if (strCell[rF][cF].equals(currentPlayer.getChar())) {
 
 			// System.out.println("ONE");
 
@@ -358,7 +117,7 @@ public class Board {
 				}
 
 				if ((rF == rT - 2)
-						&& strCell[rF + 1][cF].equals(getOpponent(strP))) { // bottom
+						&& strCell[rF + 1][cF].equals(currentPlayer.Opponent().getChar())) { // bottom
 																			// cut
 					System.out.println("bottom cut");
 					isCapture = true;
@@ -372,7 +131,7 @@ public class Board {
 				}
 
 				if ((rF == rT + 2)
-						&& strCell[rF - 1][cF].equals(getOpponent(strP))) { // top
+						&& strCell[rF - 1][cF].equals(currentPlayer.Opponent().getChar())) { // top
 																			// cut
 					System.out.println("top cut");
 					isCapture = true;
@@ -406,7 +165,7 @@ public class Board {
 					}
 
 					if ((cF == cT - 2)
-							&& strCell[rF][cF + 1].equals(getOpponent(strP))) { // right
+							&& strCell[rF][cF + 1].equals(currentPlayer.Opponent().getChar())) { // right
 																				// cut
 						System.out.println("right cut");
 						isCapture = true;
@@ -418,7 +177,7 @@ public class Board {
 					}
 
 					if ((cF == cT + 2)
-							&& strCell[rF][cF - 1].equals(getOpponent(strP))) { // left
+							&& strCell[rF][cF - 1].equals(currentPlayer.Opponent().getChar())) { // left
 																				// cut
 						System.out.println("left cut");
 						isCapture = true;
@@ -470,7 +229,7 @@ public class Board {
 						if ((cF == cT - 2)
 								&& (rF == rT - 2)
 								&& strCell[rF + 1][cF + 1]
-										.equals(getOpponent(strP))) { // bottm
+										.equals(currentPlayer.Opponent().getChar())) { // bottm
 																		// right
 																		// cut
 							isCapture = true;
@@ -487,7 +246,7 @@ public class Board {
 						if ((cF == cT + 2)
 								&& (rF == rT + 2)
 								&& strCell[rF - 1][cF - 1]
-										.equals(getOpponent(strP))) { // top
+										.equals(currentPlayer.Opponent().getChar())) { // top
 																		// left
 																		// cut
 							isCapture = true;
@@ -504,7 +263,7 @@ public class Board {
 						if ((cF == cT + 2)
 								&& (rF == rT - 2)
 								&& strCell[rF + 1][cF - 1]
-										.equals(getOpponent(strP))) { // bottm
+										.equals(currentPlayer.Opponent().getChar())) { // bottm
 																		// left
 																		// cut
 							isCapture = true;
@@ -521,7 +280,7 @@ public class Board {
 						if ((cF == cT - 2)
 								&& (rF == rT + 2)
 								&& strCell[rF - 1][cF + 1]
-										.equals(getOpponent(strP))) { // top
+										.equals(currentPlayer.Opponent().getChar())) { // top
 																		// right
 																		// cut
 							isCapture = true;
@@ -555,9 +314,12 @@ public class Board {
 			}
 
 			// To Cell
-			strCell[rT][cT] = strP;
+			strCell[rT][cT] = currentPlayer.getChar();
+			
 			previousPlayer = currentPlayer;
-
+			currentPlayer = currentPlayer.Opponent();
+			nextPlayer = currentPlayer.Opponent();
+			
 		} else {
 
 		}
@@ -588,22 +350,6 @@ public class Board {
 		return true;
 	}
 
-	public boolean Move(int rF, int cF, int rT, int cT, String strP) {
-
-		/*if (isValidMove(rF, cF, rT, cT, strP)) {
-
-			System.out.println("Valid");
-
-			strCell[rF][cF] = strBlank;
-			strCell[rT][cT] = strP;
-
-		} else {
-
-			System.out.println("inValid");
-		}
-*/
-		return true;
-	}
 
 	public int getPoints(String strP) {
 
@@ -622,15 +368,14 @@ public class Board {
 	}
 
 
+
 	
-	private void checkValidMoves(){
-		
-		
-	}
 	
+	//Done
 	public boolean setBoardPosition(String strBrdPos) {
 		boolean blRet = false;
 
+		
 		String[] strBrd = strBrdPos.split("/");
 
 		for (int r = 0; r < 7; r++) {
@@ -648,6 +393,16 @@ public class Board {
 			blRet = true;
 		}
 
+		if (strBrd[7].equals("W")){			
+			previousPlayer=Player.WHITE;
+			currentPlayer=Player.BLACK;
+			nextPlayer=Player.WHITE;
+		} else {
+			previousPlayer=Player.BLACK;
+			currentPlayer=Player.WHITE;
+			nextPlayer=Player.BLACK;
+		}
+		
 		return blRet;
 	}	
 	
@@ -656,7 +411,7 @@ public class Board {
 	
 	
 	
-	
+	//Done
 	 public String getBoardPosition(){
 		
 		 
@@ -672,7 +427,8 @@ public class Board {
 			
 			strRet+="/";
 		}
-		
+	
+		strRet+=nextPlayer.getChar();
 		return strRet;
 		
 	}
@@ -682,52 +438,7 @@ public class Board {
 	
 	
 	
-	private void Sim(String strPP) {
-		strName = "SimBoard";
-		for (int r = 0; r < 7; r++) {
-
-			for (int c = 0; c < 7; c++) {
-
-				if ((r < 2 && c < 2) || (r < 2 && c > 4) || (r > 4 && c < 2)
-						|| (r > 4 && c > 4)) {
-					strCell[r][c] = strNone;
-				} else {
-
-					if ((r > 1 && c < 3) || (r > 4 && c < 5)
-							|| (r == 4 && c == 3)) {
-						
-						if (strCell[r][c].equals(strPP)) {
-							checkValidMoves();
-						}
-						
-						//strCell[r][c] = strWhite;
-					} else {
-
-						
-						
-						
-						
-						if (r == 3 && c == 3) {
-							strCell[r][c] = strBlank;
-						} else {
-							//strCell[r][c] = strBlack;
-							
-							checkValidMoves();
-							
-						}
-					}
-
-				}
-			}
-
-		}
-
-		currentPlayer = Player.White;
-		previousPlayer=Player.None;
-		nextPlayer=Player.None;
-
-	}
-
+	
 	
 	
 	
@@ -748,13 +459,13 @@ public class Board {
 
 					if ((r > 1 && c < 3) || (r > 4 && c < 5)
 							|| (r == 4 && c == 3)) {
-						strCell[r][c] = strWhite;
+						strCell[r][c] =  Player.WHITE.getChar(); //strWhite;
 					} else {
 
 						if (r == 3 && c == 3) {
 							strCell[r][c] = strBlank;
 						} else {
-							strCell[r][c] = strBlack;
+							strCell[r][c] = Player.BLACK.getChar(); //strBlack;
 						}
 					}
 
@@ -763,9 +474,9 @@ public class Board {
 
 		}
 
-		currentPlayer = Player.White;
-		previousPlayer=Player.None;
-		nextPlayer=Player.None;
+		currentPlayer = Player.WHITE;
+		previousPlayer=Player.NONE;
+		nextPlayer=Player.NONE;
 
 	}
 

@@ -21,14 +21,15 @@ public class PointFT {
 		Init(rF, cF, rT, cT);
 	}
 
-	
 	private void Init(int rF, int cF, int rT, int cT) {
 
-		
-		strNt=Character.toString(getCordinateColumnI(cF))+Character.toString(getCordinateRowI(rF))+Character.toString(getCordinateColumnI(cT))+Character.toString(getCordinateRowI(rT));
-	
+		strNt = Character.toString(getCordinateColumnI(cF))
+				+ Character.toString(getCordinateRowI(rF))
+				+ Character.toString(getCordinateColumnI(cT))
+				+ Character.toString(getCordinateRowI(rT));
+
 	}
-	
+
 	private void Init(String strNotation) {
 
 		if (strNotation.length() == 4) {
@@ -42,36 +43,28 @@ public class PointFT {
 
 	}
 
-
 	public String getNotation() {
 
-		System.out.print(strNt);
 		return strNt;
 	}
 
-	
-	
 	public int getColumnFrom() {
 
-		System.out.print(cF);
 		return cF;
 	}
 
 	public int getRowFrom() {
 
-		System.out.print(rF);
 		return rF;
 	}
 
 	public int getColumnTo() {
 
-		System.out.print(cT);
 		return cT;
 	}
 
 	public int getRowTo() {
 
-		System.out.print(cT);
 		return rT;
 	}
 
@@ -111,8 +104,6 @@ public class PointFT {
 
 	}
 
-	
-	
 	private char getCordinateRowI(int intRow) {
 
 		char chRet = 0;
@@ -149,13 +140,6 @@ public class PointFT {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	private int getCordinateColumn(char chColumn) {
 
 		int intRet = 0;
@@ -228,7 +212,4 @@ public class PointFT {
 
 	}
 
-	
-	
-	
 }
