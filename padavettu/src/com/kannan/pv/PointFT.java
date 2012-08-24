@@ -3,6 +3,7 @@ package com.kannan.pv;
 public class PointFT {
 
 	private int cF, rF, cT, rT;
+	private String strNt;
 
 	public PointFT() {
 
@@ -15,6 +16,19 @@ public class PointFT {
 		Init(strNotation);
 	}
 
+	public PointFT(int rF, int cF, int rT, int cT) {
+
+		Init(rF, cF, rT, cT);
+	}
+
+	
+	private void Init(int rF, int cF, int rT, int cT) {
+
+		
+		strNt=Character.toString(getCordinateColumnI(cF))+Character.toString(getCordinateRowI(rF))+Character.toString(getCordinateColumnI(cT))+Character.toString(getCordinateRowI(rT));
+	
+	}
+	
 	private void Init(String strNotation) {
 
 		if (strNotation.length() == 4) {
@@ -28,6 +42,15 @@ public class PointFT {
 
 	}
 
+
+	public String getNotation() {
+
+		System.out.print(strNt);
+		return strNt;
+	}
+
+	
+	
 	public int getColumnFrom() {
 
 		System.out.print(cF);
@@ -88,6 +111,51 @@ public class PointFT {
 
 	}
 
+	
+	
+	private char getCordinateRowI(int intRow) {
+
+		char chRet = 0;
+
+		switch (intRow) {
+		case 6:
+			chRet = '1';
+			break;
+		case 5:
+			chRet = '2';
+			break;
+		case 4:
+			chRet = '3';
+			break;
+		case 3:
+			chRet = '4';
+			break;
+		case 2:
+			chRet = '5';
+			break;
+		case 1:
+			chRet = '6';
+			break;
+		case 0:
+			chRet = '7';
+			break;
+		default:
+			chRet = 0;
+			break;
+
+		}
+
+		return chRet;
+
+	}
+
+	
+	
+	
+	
+	
+	
+	
 	private int getCordinateColumn(char chColumn) {
 
 		int intRet = 0;
@@ -124,4 +192,43 @@ public class PointFT {
 
 	}
 
+	private char getCordinateColumnI(int intColumn) {
+
+		char chRet = 0;
+
+		switch (intColumn) {
+		case 0:
+			chRet = 'a';
+			break;
+		case 1:
+			chRet = 'b';
+			break;
+		case 2:
+			chRet = 'c';
+			break;
+		case 3:
+			chRet = 'd';
+			break;
+		case 4:
+			chRet = 'e';
+			break;
+		case 5:
+			chRet = 'f';
+			break;
+		case 6:
+			chRet = 'g';
+			break;
+		default:
+			chRet = 0;
+			break;
+
+		}
+
+		return chRet;
+
+	}
+
+	
+	
+	
 }

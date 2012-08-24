@@ -24,6 +24,9 @@ public class BoardTest {
 		Board brd= new Board();
 		brd.renderBoard();
 		
+		try {
+			//Board cpBrd = (Board) brd.clone();
+		
 		
 		String strNotation="";
 		InputStreamReader converter = new InputStreamReader(System.in);
@@ -33,7 +36,6 @@ public class BoardTest {
 			try {
 				strNotation = in.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -42,9 +44,19 @@ public class BoardTest {
 				brd.Move(strNotation);
 				brd.renderBoard();
 
+				System.out.println(brd.getBoardPosition());
 				
+				brd.setBoardPosition("__BBB__/__BBB__/WWWBBBB/WWWWBBB/WWW BBB/__WWW__/__WWW__/");
+				//cpBrd.renderBoard();
 				
+				brd.renderBoard();
 			}
+		}
+		
+		
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		

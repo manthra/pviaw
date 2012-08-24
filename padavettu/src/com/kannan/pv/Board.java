@@ -5,6 +5,8 @@ public class Board {
 	public Board() {
 		Init();
 	}
+	
+	
 
 	String[][] strCell = new String[7][7];
 	boolean isValid = true;
@@ -309,6 +311,11 @@ public class Board {
 		int rT = pnt.getRowTo();
 		int cT = pnt.getColumnTo();
 
+		/*PointFT pp = new PointFT(rF, cF, rT, cT);
+		
+		System.out.println("NNN" + pp.getNotation());
+*/
+		
 		boolean isValid = false;
 		boolean isCapture = false;
 
@@ -325,6 +332,7 @@ public class Board {
 			strP = "B";
 		}
 
+		
 		if (strCell[rF][cF].equals(strP)) {
 
 			// System.out.println("ONE");
@@ -567,6 +575,7 @@ public class Board {
 		PointFT pnt = new PointFT(strNotation);
 
 		
+		
 		if (isValidMove(pnt)) {
 
 			System.out.println("Valid");
@@ -612,9 +621,122 @@ public class Board {
 		return pnts;
 	}
 
+
+	
+	private void checkValidMoves(){
+		
+		
+	}
+	
+	public boolean setBoardPosition(String strBrdPos) {
+		boolean blRet = false;
+
+		String[] strBrd = strBrdPos.split("/");
+
+		for (int r = 0; r < 7; r++) {
+
+			for (int c = 0; c < 7; c++) {
+
+				try {
+					strCell[r][c] = Character.toString(strBrd[r].charAt(c));
+				} catch (Exception e) {
+					// Do nothing
+				}
+
+			}
+
+			blRet = true;
+		}
+
+		return blRet;
+	}	
+	
+	
+	
+	
+	
+	
+	
+	 public String getBoardPosition(){
+		
+		 
+		//__BBB__/__BBB__/WWWBBBB/WWWWBBB/WWW BBB/__WWW__/__WWW__/     init Pos 
+		String strRet="";
+
+		for (int r = 0; r < 7; r++) {
+
+			for (int c = 0; c < 7; c++) {
+
+				strRet+=strCell[r][c];
+			}
+			
+			strRet+="/";
+		}
+		
+		return strRet;
+		
+	}
+	
+
+	
+	
+	
+	
+	private void Sim(String strPP) {
+		strName = "SimBoard";
+		for (int r = 0; r < 7; r++) {
+
+			for (int c = 0; c < 7; c++) {
+
+				if ((r < 2 && c < 2) || (r < 2 && c > 4) || (r > 4 && c < 2)
+						|| (r > 4 && c > 4)) {
+					strCell[r][c] = strNone;
+				} else {
+
+					if ((r > 1 && c < 3) || (r > 4 && c < 5)
+							|| (r == 4 && c == 3)) {
+						
+						if (strCell[r][c].equals(strPP)) {
+							checkValidMoves();
+						}
+						
+						//strCell[r][c] = strWhite;
+					} else {
+
+						
+						
+						
+						
+						if (r == 3 && c == 3) {
+							strCell[r][c] = strBlank;
+						} else {
+							//strCell[r][c] = strBlack;
+							
+							checkValidMoves();
+							
+						}
+					}
+
+				}
+			}
+
+		}
+
+		currentPlayer = Player.White;
+		previousPlayer=Player.None;
+		nextPlayer=Player.None;
+
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	private void Init() {
-		strName = "Board";
+		strName = "GameBoard";
 		for (int r = 0; r < 7; r++) {
 
 			for (int c = 0; c < 7; c++) {
