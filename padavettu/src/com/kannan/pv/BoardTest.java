@@ -3,6 +3,9 @@ package com.kannan.pv;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class BoardTest {
 
@@ -32,8 +35,18 @@ public class BoardTest {
 					brd.renderBoard();
 
 					
-					String[] strPos=brd.getValidMoves("d3");
+					List<MoveScore> mv = new ArrayList<MoveScore>();
 					
+					mv = brd.getValidMoveList("d3",1);
+					
+					for (Iterator iterator = mv.iterator(); iterator.hasNext();) {
+						MoveScore moveScore = (MoveScore) iterator.next();
+						
+						System.out.println(moveScore.getMove() + "_" + moveScore.getScore() + "_" + moveScore.getBoard() );
+						
+					}
+					
+					/*String[] strPos=brd.getValidMoves("d3");
 					
 					
 					if (strPos!=null){
@@ -45,7 +58,7 @@ public class BoardTest {
 						}
 						
 					}
-					
+	*/				
 					
 					/*brd.Move(strNotation);
 					brd.renderBoard();
