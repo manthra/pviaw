@@ -27,11 +27,34 @@ public class BoardTest {
 				if (!(strNotation.equals("quit"))) {
 
 			
-					
-					
+	
 					brd.Move(strNotation);
 					brd.renderBoard();
 
+					
+					String[] strPos=brd.getValidMoves("d3");
+					
+					
+					
+					if (strPos!=null){
+						
+						for (int i = 0; i < strPos.length; i++) {
+							
+							System.out.println(strPos[i]);
+							
+						}
+						
+					}
+					
+					
+					/*brd.Move(strNotation);
+					brd.renderBoard();
+*/
+					
+					//Engine eng = new Engine(brd.getBoardPosition());
+					
+					//System.out.println(eng.getNextBestMove());
+					
 					
 					
 					//System.out.println(brd.getBoardPosition());

@@ -13,7 +13,7 @@ public enum Player {
 	},
 	NONE {
 		public String getChar() {
-			return "*";
+			return " ";
 		}
 	};
 
