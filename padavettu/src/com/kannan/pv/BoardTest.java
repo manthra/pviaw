@@ -34,18 +34,27 @@ public class BoardTest {
 					brd.Move(strNotation);
 					brd.renderBoard();
 
+					/*Engine eg = new Engine(brd.getBoardPosition());
+					System.out.println("NBM " + eg.getNextBestMove());
+					*/
 					
+					Engine eg = new Engine(brd.getBoardPosition());
+					
+					System.out.println(eg.getNextBestMove());
+					
+					/*
 					List<MoveScore> mv = new ArrayList<MoveScore>();
 					
-					mv = brd.getValidMoveList("d3",1);
+					mv = eg.Search();
+					//mv= brd.getValidMoveList("d5", 1);
 					
-					for (Iterator iterator = mv.iterator(); iterator.hasNext();) {
+					for (Iterator<MoveScore> iterator = mv.iterator(); iterator.hasNext();) {
 						MoveScore moveScore = (MoveScore) iterator.next();
 						
-						System.out.println(moveScore.getMove() + "_" + moveScore.getScore() + "_" + moveScore.getBoard() );
+						System.out.println(moveScore.getMoveTo() + "_" + moveScore.getMoveFrom() + "_" + moveScore.getScore() + "_" + moveScore.getBoard() + "_" + moveScore.getDepth());
 						
 					}
-					
+					*/
 					/*String[] strPos=brd.getValidMoves("d3");
 					
 					

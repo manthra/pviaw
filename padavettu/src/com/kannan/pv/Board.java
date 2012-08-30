@@ -655,153 +655,174 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 		
 		String strBoard=getBoardPosition();
 		
+		//System.out.println(rF + ":" + cF + ":" +currentPlayer.getChar() );
+		
 		
 	
 		if (currentPlayer.getChar().equals(strCell[rF][cF])) {
 			try {
 				// up-1
-				if (strCell[rF - 1][cF] == Player.NONE.getChar()) {
+				if (strCell[rF - 1][cF].equals(Player.NONE.getChar())) {
 					
 					
-					list.add(new MoveScore(0, new Point(rF - 1, cF).getNotation(), strBoard, intDepth) );
+					list.add(new MoveScore(0, new Point(rF - 1, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e15) {
 				// TODO Auto-generated catch block
-				e15.printStackTrace();
+				//e15.printStackTrace();
 			}
 
 			try {
 				// up-2
-				if (strCell[rF - 2][cF] == Player.NONE.getChar()
-						&& strCell[rF - 1][cF] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF).getNotation(), strBoard, intDepth) );
+				if (strCell[rF - 2][cF].equals(Player.NONE.getChar())
+						&& strCell[rF - 1][cF].equals(currentPlayer.Opponent()
+								.getChar())) {
+					list.add(new MoveScore(1, new Point(rF - 2, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e14) {
 				// TODO Auto-generated catch block
-				e14.printStackTrace();
+				//e14.printStackTrace();
 			}
 
 			try {
 				// down+1
-				if (strCell[rF + 1][cF] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 1][cF].equals(Player.NONE.getChar())) {
+					list.add(new MoveScore(0, new Point(rF + 1, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside3");
 				}
 			} catch (Exception e13) {
 				// TODO Auto-generated catch block
-				e13.printStackTrace();
+				//e13.printStackTrace();
 			}
-
+/*
+			System.out.println("M" + strCell[rF + 2][cF] + "M" );
+			System.out.println("M" + Player.NONE.getChar() + "M" );
+			System.out.println(currentPlayer.Opponent().getChar());
+			System.out.println(strCell[rF + 1][cF]);
+			
+*/			
+			
 			try {
 				// down+2
-				if (strCell[rF + 2][cF] == Player.NONE.getChar()
-						&& strCell[rF + 1][cF] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 2][cF].equals(Player.NONE.getChar())
+						&& strCell[rF + 1][cF].equals(currentPlayer.Opponent().getChar())) {
+					list.add(new MoveScore(1, new Point(rF + 2, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside4");
+				}else{
+					//System.out.println("else");
 				}
+				
 			} catch (Exception e12) {
 				// TODO Auto-generated catch block
-				e12.printStackTrace();
+				//e12.printStackTrace();
 			}
 
 			try {
 				// right+1
-				if (strCell[rF][cF + 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF, cF + 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF][cF + 1].equals(Player.NONE.getChar())) {
+					list.add(new MoveScore(0, new Point(rF, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e11) {
 				// TODO Auto-generated catch block
-				e11.printStackTrace();
+				//e11.printStackTrace();
 			}
 
 			try {
 				// right+2
-				if (strCell[rF][cF + 2] == Player.NONE.getChar()
-						&& strCell[rF][cF + 1] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new MoveScore(1, new Point(rF, cF + 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF][cF + 2].equals(Player.NONE.getChar())
+						&& strCell[rF][cF + 1].equals(currentPlayer.Opponent()
+								.getChar())) {
+					list.add(new MoveScore(1, new Point(rF, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e10) {
 				// TODO Auto-generated catch block
-				e10.printStackTrace();
+				//e10.printStackTrace();
 			}
 
 			try {
 				// left-1
-				if (strCell[rF][cF - 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF, cF - 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF][cF - 1].equals(Player.NONE.getChar())) {
+					list.add(new MoveScore(0, new Point(rF, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e9) {
 				// TODO Auto-generated catch block
-				e9.printStackTrace();
+				//e9.printStackTrace();
 			}
 
 			try {
 				// left+2
-				if (strCell[rF][cF - 2] == Player.NONE.getChar()
-						&& strCell[rF][cF - 1] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new MoveScore(1, new Point(rF, cF - 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF][cF - 2].equals(Player.NONE.getChar())
+						&& strCell[rF][cF - 1].equals(currentPlayer.Opponent()
+								.getChar())) {
+					list.add(new MoveScore(1, new Point(rF, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e8) {
 				// TODO Auto-generated catch block
-				e8.printStackTrace();
+				//e8.printStackTrace();
 			}
 			
 
+			
+			
+			//Diagonal
+			
+			
 			try {
 				// left-1 top-1
-				if (strCell[rF - 1][cF - 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF - 1, cF - 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF - 1][cF - 1].equals(Player.NONE.getChar()) && !(rF==5 && cF==2) && !(rF==2 && cF==5) ) {
+					
+					//5,2 
+					
+					list.add(new MoveScore(0, new Point(rF - 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e7) {
 				// TODO Auto-generated catch block
-				e7.printStackTrace();
+				//e7.printStackTrace();
 			}
 
 			try {
 				// right+1 top+1
-				if (strCell[rF - 1][cF + 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF - 1, cF + 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF - 1][cF + 1].equals(Player.NONE.getChar()) && !(rF==5 && cF==4) && !(rF==2 && cF==1)   ) {
+					list.add(new MoveScore(0, new Point(rF - 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e6) {
 				// TODO Auto-generated catch block
-				e6.printStackTrace();
+				//e6.printStackTrace();
 			}
 
 			try {
 				// left-1 bottom+1
-				if (strCell[rF + 1][cF - 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF - 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 1][cF - 1].equals(Player.NONE.getChar()) && !(rF==1 && cF==2) && !(rF==4 && cF==5)) {
+					list.add(new MoveScore(0, new Point(rF + 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e5) {
 				// TODO Auto-generated catch block
-				e5.printStackTrace();
+				//e5.printStackTrace();
 			}
 
 			try {
 				// right+1 top+1
-				if (strCell[rF + 1][cF + 1] == Player.NONE.getChar()) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF + 1).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 1][cF + 1].equals(Player.NONE.getChar()) && !(rF==4 && cF==1) && !(rF==1 && cF==4) ) {
+					list.add(new MoveScore(0, new Point(rF + 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e4) {
 				// TODO Auto-generated catch block
-				e4.printStackTrace();
+				//e4.printStackTrace();
 			}
 
 
+			
+			
 		
 			
 			
@@ -809,46 +830,46 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			
 			try {
 				// left-1 top-1
-				if (strCell[rF - 2][cF - 2] == Player.NONE.getChar() && strCell[rF - 1][cF - 1] == currentPlayer.Opponent().getChar() ) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF - 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF - 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF - 1].equals(currentPlayer.Opponent().getChar()) && !(rF==6 && cF==3) && !(rF==3 && cF==6) ) {
+					list.add(new MoveScore(1, new Point(rF - 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e3) {
 				// TODO Auto-generated catch block
-				e3.printStackTrace();
+				//e3.printStackTrace();
 			}
 
 			try {
 				// right+1 top+1
-				if (strCell[rF - 2][cF + 2] == Player.NONE.getChar() && strCell[rF - 1][cF + 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF + 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF - 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF + 1].equals(currentPlayer.Opponent().getChar()) && !(rF==3 && cF==0) && !(rF==6 && cF==3)  ) {
+					list.add(new MoveScore(1, new Point(rF - 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
-				e2.printStackTrace();
+				//e2.printStackTrace();
 			}
 
 			try {
 				// left-1 bottom+1
-				if (strCell[rF + 2][cF - 2] == Player.NONE.getChar() && strCell[rF + 1][cF - 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF - 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF - 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==6 && cF==3) ) {
+					list.add(new MoveScore(1, new Point(rF + 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
 			}
 
 			try {
 				// right+1 top+1
-				if (strCell[rF + 2][cF + 2] == Player.NONE.getChar() && strCell[rF + 1][cF + 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF + 2).getNotation(), strBoard, intDepth) );
+				if (strCell[rF + 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF + 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==3 && cF==0) ) {
+					list.add(new MoveScore(1, new Point(rF + 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 			
@@ -911,6 +932,13 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 
 	}
 
+
+	
+	
+	
+	
+	
+	
 	private void Init() {
 		strName = "GameBoard";
 		for (int r = 0; r < 7; r++) {

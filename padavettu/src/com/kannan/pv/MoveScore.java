@@ -3,16 +3,19 @@ package com.kannan.pv;
 public class MoveScore {
 
 	
-	public MoveScore(int intScore, String strMove, String strBoard, int intDepth){
+	public MoveScore(int intScore, String strMoveTo, String strMoveFrom, String strBoard, int intDepth){
 		this.intScore=intScore;
-		this.strMove=strMove;
+		this.strMoveTo=strMoveTo;
+		this.strMoveFrom=strMoveFrom;
 		this.strBoard=strBoard;
 		this.intDepth=intDepth;
 	}
 	
 	int intScore=0;
 	int intDepth=0;
-	String strMove="";
+	String strMoveTo="";
+	String strMoveFrom="";
+	
 	String strBoard="";
 	
 	
@@ -24,13 +27,28 @@ public class MoveScore {
 		this.intScore=intScore;
 	}
 	
-	public String getMove(){
-		return this.strMove;
+	public String getMoveTo(){
+		return this.strMoveTo;
 	}
 	
-	public void setMove(String strMove){
-		this.strMove=strMove;
+	public void setMoveTo(String strMoveTo){
+		this.strMoveTo=strMoveTo;
 	}
+	
+	
+	public String getMoveFrom(){
+		return this.strMoveFrom;
+	}
+	
+	public void setMoveFrom(String strMoveFrom){
+		this.strMoveFrom=strMoveFrom;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public String getBoard(){
 		return this.strBoard;
