@@ -40,7 +40,10 @@ public class BoardTest {
 					
 					Engine eg = new Engine(brd.getBoardPosition());
 					
-					System.out.println(eg.getNextBestMove());
+					//System.out.println(eg.getNextBestMove());
+					
+					eg.getBestMove("Root");
+					
 					
 					/*
 					List<MoveScore> mv = new ArrayList<MoveScore>();

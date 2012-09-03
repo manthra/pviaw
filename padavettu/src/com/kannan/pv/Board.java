@@ -28,8 +28,10 @@ public class Board {
 	public void renderBoard() {
 
 		System.out
-				.println("----------------------------------------------------------");
+				.println("------------------------------------------------------------------");
 		for (int r = 0; r < 7; r++) {
+
+			System.out.print(7 - r + "\t|");
 
 			for (int c = 0; c < 7; c++) {
 				System.out.print("\t" + strCell[r][c]);
@@ -37,7 +39,9 @@ public class Board {
 			System.out.print("\n\n");
 		}
 		System.out
-				.println("----------------------------------------------------------");
+				.println("------------------------------------------------------------------");
+
+		System.out.println("\t|\ta\tb\tc\td\te\tf\tg");
 
 		if (isEnd) {
 			System.out.println(won.name() + " won the game!");
@@ -91,7 +95,7 @@ public class Board {
 		 * 
 		 * System.out.println("PP " + previousPlayer.getChar());
 		 */
-		if (strCell[rF][cF].equals(currentPlayer.getChar())) {
+		if (strCell[rF][cF].equals(currentPlayer.getChar()) &&  strCell[rT][cT].equals(Player.NONE.getChar()) ) {
 
 			// System.out.println("ONE");
 
@@ -100,17 +104,17 @@ public class Board {
 			if (cF == cT && rF != rT) { // same column diff row -- rowwise
 										// movement
 
-				System.out.println("same column");
+//				System.out.println("same column");
 
 				if (currentPlayer != previousPlayer) {
 
 					if (rF == rT - 1) { // bottom
-						System.out.println("bottom");
+//						System.out.println("bottom");
 						isValid = true;
 					}
 
 					if (rF == rT + 1) { // top
-						System.out.println("top");
+//						System.out.println("top");
 						isValid = true;
 					}
 				}
@@ -119,7 +123,7 @@ public class Board {
 						&& strCell[rF + 1][cF].equals(currentPlayer.Opponent()
 								.getChar())) { // bottom
 					// cut
-					System.out.println("bottom cut");
+//					System.out.println("bottom cut");
 					isCapture = true;
 					rCapture = rF + 1;
 					cCapture = cF;
@@ -134,7 +138,7 @@ public class Board {
 						&& strCell[rF - 1][cF].equals(currentPlayer.Opponent()
 								.getChar())) { // top
 					// cut
-					System.out.println("top cut");
+//					System.out.println("top cut");
 					isCapture = true;
 					rCapture = rF - 1;
 					cCapture = cF;
@@ -148,18 +152,18 @@ public class Board {
 				if (cF != cT && rF == rT) { // same row diff column --
 											// columnwise movement
 
-					System.out.println("diff column");
+					//System.out.println("diff column");
 
 					if (currentPlayer != previousPlayer) {
 
 						if (cF == cT - 1) { // right
-							System.out.println("right");
+//							System.out.println("right");
 							isValid = true;
 
 						}
 
 						if (cF == cT + 1) { // top
-							System.out.println("left");
+//							System.out.println("left");
 							isValid = true;
 						}
 
@@ -169,7 +173,7 @@ public class Board {
 							&& strCell[rF][cF + 1].equals(currentPlayer
 									.Opponent().getChar())) { // right
 						// cut
-						System.out.println("right cut");
+//						System.out.println("right cut");
 						isCapture = true;
 						rCapture = rF;
 						cCapture = cF + 1;
@@ -182,7 +186,7 @@ public class Board {
 							&& strCell[rF][cF - 1].equals(currentPlayer
 									.Opponent().getChar())) { // left
 						// cut
-						System.out.println("left cut");
+//						System.out.println("left cut");
 						isCapture = true;
 						rCapture = rF;
 						cCapture = cF - 1;
@@ -195,32 +199,32 @@ public class Board {
 
 					if (cF != cT && rF != rT) { // diff row diff column --
 
-						System.out.println("diagonal move");
+//						System.out.println("diagonal move");
 
 						if (currentPlayer != previousPlayer) {
 
 							if ((cF == cT - 1) && (rF == rT - 1)) { // bottm
 																	// right
-								System.out.println("bottm right");
+//								System.out.println("bottm right");
 								isValid = true;
 
 							}
 
 							if ((cF == cT + 1) && (rF == rT - 1)) { // bottm
 																	// right
-								System.out.println("bottm left");
+//								System.out.println("bottm left");
 								isValid = true;
 
 							}
 
 							if ((cF == cT + 1) && (rF == rT + 1)) { // top left
-								System.out.println("top left");
+//								System.out.println("top left");
 								isValid = true;
 
 							}
 
 							if ((cF == cT - 1) && (rF == rT + 1)) { // top right
-								System.out.println("top right");
+//								System.out.println("top right");
 								isValid = true;
 
 							}
@@ -240,7 +244,7 @@ public class Board {
 							cCapture = cF + 1;
 
 							// strCell[rF + 1][cF + 1] = strBlank;
-							System.out.println("bottm right cut");
+//							System.out.println("bottm right cut");
 							isValid = true;
 
 						}
@@ -257,7 +261,7 @@ public class Board {
 							cCapture = cF - 1;
 
 							// strCell[rF - 1][cF - 1] = strBlank;
-							System.out.println("top left cut");
+//							System.out.println("top left cut");
 							isValid = true;
 
 						}
@@ -274,7 +278,7 @@ public class Board {
 							cCapture = cF - 1;
 
 							// strCell[rF + 1][cF - 1] = strBlank;
-							System.out.println("bottm left cut");
+//							System.out.println("bottm left cut");
 							isValid = true;
 
 						}
@@ -291,7 +295,7 @@ public class Board {
 							cCapture = cF + 1;
 
 							// strCell[rF - 1][cF + 1] = strBlank;
-							System.out.println("top right cut");
+//							System.out.println("top right cut");
 
 							isValid = true;
 
@@ -305,6 +309,9 @@ public class Board {
 			}
 
 		}
+		
+		
+		
 
 		if (isValid) {
 
@@ -389,249 +396,6 @@ public class Board {
 	
 	
 	
-	
-	public String[] getValidMoves(String strCurrentPos) {
-		
-		String[] strMoves = null;
-
-		List<String> list = new ArrayList<String>();
-		Point pnt = new Point(strCurrentPos);
-
-		int rF = pnt.getRowFrom();
-		int cF = pnt.getColumnFrom();
-
-		
-		/*System.out.println(rF);
-		System.out.println(cF);
-*/
-		if (currentPlayer.getChar().equals(strCell[rF][cF])) {
-//			System.out.println("Correct");
-
-//			System.out.println(strCell[rF - 1][cF]);
-
-			try {
-				// up-1
-				if (strCell[rF - 1][cF] == Player.NONE.getChar()) {
-					list.add(new Point(rF - 1, cF).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e15) {
-				// TODO Auto-generated catch block
-				e15.printStackTrace();
-			}
-
-			try {
-				// up-2
-				if (strCell[rF - 2][cF] == Player.NONE.getChar()
-						&& strCell[rF - 1][cF] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new Point(rF - 2, cF).getNotation());
-					//System.out.println("Inside2");
-				}
-			} catch (Exception e14) {
-				// TODO Auto-generated catch block
-				e14.printStackTrace();
-			}
-
-			try {
-				// down+1
-				if (strCell[rF + 1][cF] == Player.NONE.getChar()) {
-					list.add(new Point(rF + 1, cF).getNotation());
-					//System.out.println("Inside3");
-				}
-			} catch (Exception e13) {
-				// TODO Auto-generated catch block
-				e13.printStackTrace();
-			}
-
-			try {
-				// down+2
-				if (strCell[rF + 2][cF] == Player.NONE.getChar()
-						&& strCell[rF + 1][cF] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new Point(rF + 2, cF).getNotation());
-					//System.out.println("Inside4");
-				}
-			} catch (Exception e12) {
-				// TODO Auto-generated catch block
-				e12.printStackTrace();
-			}
-
-			try {
-				// right+1
-				if (strCell[rF][cF + 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF, cF + 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e11) {
-				// TODO Auto-generated catch block
-				e11.printStackTrace();
-			}
-
-			try {
-				// right+2
-				if (strCell[rF][cF + 2] == Player.NONE.getChar()
-						&& strCell[rF][cF + 1] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new Point(rF, cF + 2).getNotation());
-					//System.out.println("Inside2");
-				}
-			} catch (Exception e10) {
-				// TODO Auto-generated catch block
-				e10.printStackTrace();
-			}
-
-			try {
-				// left-1
-				if (strCell[rF][cF - 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF, cF - 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e9) {
-				// TODO Auto-generated catch block
-				e9.printStackTrace();
-			}
-
-			try {
-				// left+2
-				if (strCell[rF][cF - 2] == Player.NONE.getChar()
-						&& strCell[rF][cF - 1] == currentPlayer.Opponent()
-								.getChar()) {
-					list.add(new Point(rF, cF - 2).getNotation());
-					//System.out.println("Inside2");
-				}
-			} catch (Exception e8) {
-				// TODO Auto-generated catch block
-				e8.printStackTrace();
-			}
-			
-
-			try {
-				// left-1 top-1
-				if (strCell[rF - 1][cF - 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF - 1, cF - 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e7) {
-				// TODO Auto-generated catch block
-				e7.printStackTrace();
-			}
-
-			try {
-				// right+1 top+1
-				if (strCell[rF - 1][cF + 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF - 1, cF + 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e6) {
-				// TODO Auto-generated catch block
-				e6.printStackTrace();
-			}
-
-			try {
-				// left-1 bottom+1
-				if (strCell[rF + 1][cF - 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF + 1, cF - 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e5) {
-				// TODO Auto-generated catch block
-				e5.printStackTrace();
-			}
-
-			try {
-				// right+1 top+1
-				if (strCell[rF + 1][cF + 1] == Player.NONE.getChar()) {
-					list.add(new Point(rF + 1, cF + 1).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e4) {
-				// TODO Auto-generated catch block
-				e4.printStackTrace();
-			}
-
-
-		
-			
-			
-			
-			
-			try {
-				// left-1 top-1
-				if (strCell[rF - 2][cF - 2] == Player.NONE.getChar() && strCell[rF - 1][cF - 1] == currentPlayer.Opponent().getChar() ) {
-					list.add(new Point(rF - 2, cF - 2).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}
-
-			try {
-				// right+1 top+1
-				if (strCell[rF - 2][cF + 2] == Player.NONE.getChar() && strCell[rF - 1][cF + 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new Point(rF - 2, cF + 2).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-
-			try {
-				// left-1 bottom+1
-				if (strCell[rF + 2][cF - 2] == Player.NONE.getChar() && strCell[rF + 1][cF - 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new Point(rF + 2, cF - 2).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			try {
-				// right+1 top+1
-				if (strCell[rF + 2][cF + 2] == Player.NONE.getChar() && strCell[rF + 1][cF + 1] == currentPlayer.Opponent().getChar()) {
-					list.add(new Point(rF + 2, cF + 2).getNotation());
-					//System.out.println("Inside1");
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		} else {
-			//System.out.println("Incorrect");
-		}
-
-		if (list.size() > 0) {
-
-			strMoves = new String[list.size()];
-
-			list.toArray(strMoves);
-		}
-
-		return strMoves;
-	}
 
 	
 	
@@ -640,23 +404,53 @@ public class Board {
 	
 	
 	
-	
-	
-	
-public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
+public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth, String strParentKey) {
 		
 		
 		
 		List<MoveScore> list = new ArrayList<MoveScore>();
 		Point pnt = new Point(strCurrentPos);
 
+		int intPlayerIdentifier=0;
+		long lnDepthIdentifier=0;
+		long lnPoints=0;
+		
+		
+		if (currentPlayer.getChar().equals("W")){
+			intPlayerIdentifier=1;
+		}else{
+			intPlayerIdentifier=-1;
+		}
+		
+		switch (intDepth) {
+		case 0:
+			lnDepthIdentifier=10000000;
+			break;
+		case 1:
+			lnDepthIdentifier=100000;
+			break;
+		case 2:
+			lnDepthIdentifier=1000;
+			break;
+		case 3:
+			lnDepthIdentifier=10;
+			break;
+		default:
+			lnDepthIdentifier=1;
+			break;
+		}
+		
+		lnPoints=lnDepthIdentifier*intPlayerIdentifier;
+		
+		
+		
 		int rF = pnt.getRowFrom();
 		int cF = pnt.getColumnFrom();
 		
 		String strBoard=getBoardPosition();
 		
 		//System.out.println(rF + ":" + cF + ":" +currentPlayer.getChar() );
-		
+		String strKey="";
 		
 	
 		if (currentPlayer.getChar().equals(strCell[rF][cF])) {
@@ -664,8 +458,9 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				// up-1
 				if (strCell[rF - 1][cF].equals(Player.NONE.getChar())) {
 					
+					strKey=java.util.UUID.randomUUID().toString();
 					
-					list.add(new MoveScore(0, new Point(rF - 1, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
+					list.add(new MoveScore(0, new Point(rF - 1, cF).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e15) {
@@ -678,7 +473,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				if (strCell[rF - 2][cF].equals(Player.NONE.getChar())
 						&& strCell[rF - 1][cF].equals(currentPlayer.Opponent()
 								.getChar())) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF - 2, cF).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e14) {
@@ -689,7 +485,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// down+1
 				if (strCell[rF + 1][cF].equals(Player.NONE.getChar())) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF + 1, cF).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside3");
 				}
 			} catch (Exception e13) {
@@ -708,7 +505,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				// down+2
 				if (strCell[rF + 2][cF].equals(Player.NONE.getChar())
 						&& strCell[rF + 1][cF].equals(currentPlayer.Opponent().getChar())) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF + 2, cF).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside4");
 				}else{
 					//System.out.println("else");
@@ -722,7 +520,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// right+1
 				if (strCell[rF][cF + 1].equals(Player.NONE.getChar())) {
-					list.add(new MoveScore(0, new Point(rF, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e11) {
@@ -735,7 +534,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				if (strCell[rF][cF + 2].equals(Player.NONE.getChar())
 						&& strCell[rF][cF + 1].equals(currentPlayer.Opponent()
 								.getChar())) {
-					list.add(new MoveScore(1, new Point(rF, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e10) {
@@ -746,7 +546,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// left-1
 				if (strCell[rF][cF - 1].equals(Player.NONE.getChar())) {
-					list.add(new MoveScore(0, new Point(rF, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e9) {
@@ -759,7 +560,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				if (strCell[rF][cF - 2].equals(Player.NONE.getChar())
 						&& strCell[rF][cF - 1].equals(currentPlayer.Opponent()
 								.getChar())) {
-					list.add(new MoveScore(1, new Point(rF, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside2");
 				}
 			} catch (Exception e8) {
@@ -778,8 +580,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 				if (strCell[rF - 1][cF - 1].equals(Player.NONE.getChar()) && !(rF==5 && cF==2) && !(rF==2 && cF==5) ) {
 					
 					//5,2 
-					
-					list.add(new MoveScore(0, new Point(rF - 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF - 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e7) {
@@ -790,7 +592,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// right+1 top+1
 				if (strCell[rF - 1][cF + 1].equals(Player.NONE.getChar()) && !(rF==5 && cF==4) && !(rF==2 && cF==1)   ) {
-					list.add(new MoveScore(0, new Point(rF - 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF - 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e6) {
@@ -801,7 +604,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// left-1 bottom+1
 				if (strCell[rF + 1][cF - 1].equals(Player.NONE.getChar()) && !(rF==1 && cF==2) && !(rF==4 && cF==5)) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF + 1, cF - 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e5) {
@@ -812,7 +616,8 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			try {
 				// right+1 top+1
 				if (strCell[rF + 1][cF + 1].equals(Player.NONE.getChar()) && !(rF==4 && cF==1) && !(rF==1 && cF==4) ) {
-					list.add(new MoveScore(0, new Point(rF + 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth) );
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(0, new Point(rF + 1, cF + 1).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e4) {
@@ -830,8 +635,9 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 			
 			try {
 				// left-1 top-1
-				if (strCell[rF - 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF - 1].equals(currentPlayer.Opponent().getChar()) && !(rF==6 && cF==3) && !(rF==3 && cF==6) ) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+				if (strCell[rF - 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF - 1].equals(currentPlayer.Opponent().getChar()) && !(rF==6 && cF==3) && !(rF==3 && cF==6)  && !(rF==5 && cF==2)  && !(rF==2 && cF==5) ) {
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF - 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e3) {
@@ -841,8 +647,9 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 
 			try {
 				// right+1 top+1
-				if (strCell[rF - 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF + 1].equals(currentPlayer.Opponent().getChar()) && !(rF==3 && cF==0) && !(rF==6 && cF==3)  ) {
-					list.add(new MoveScore(1, new Point(rF - 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+				if (strCell[rF - 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF - 1][cF + 1].equals(currentPlayer.Opponent().getChar()) && !(rF==3 && cF==0) && !(rF==6 && cF==3)  && !(rF==2 && cF==1)  && !(rF==5 && cF==4) ) {
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF - 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e2) {
@@ -852,8 +659,9 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 
 			try {
 				// left-1 bottom+1
-				if (strCell[rF + 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF - 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==6 && cF==3) ) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+				if (strCell[rF + 2][cF - 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF - 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==6 && cF==3)  && !(rF==1 && cF==2)  && !(rF==4 && cF==5) ) {
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF + 2, cF - 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e1) {
@@ -863,8 +671,9 @@ public List<MoveScore> getValidMoveList(String strCurrentPos, int intDepth) {
 
 			try {
 				// right+1 top+1
-				if (strCell[rF + 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF + 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==3 && cF==0) ) {
-					list.add(new MoveScore(1, new Point(rF + 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth) );
+				if (strCell[rF + 2][cF + 2].equals(Player.NONE.getChar()) && strCell[rF + 1][cF + 1].equals(currentPlayer.Opponent().getChar())  && !(rF==0 && cF==3) && !(rF==3 && cF==0)  && !(rF==4 && cF==1)  && !(rF==1 && cF==4) ) {
+					strKey=java.util.UUID.randomUUID().toString();
+					list.add(new MoveScore(lnPoints, new Point(rF + 2, cF + 2).getNotation(), strCurrentPos, strBoard, intDepth, currentPlayer.getChar(), strKey, strParentKey) );
 					//System.out.println("Inside1");
 				}
 			} catch (Exception e) {

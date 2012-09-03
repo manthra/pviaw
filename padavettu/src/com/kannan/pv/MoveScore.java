@@ -3,29 +3,67 @@ package com.kannan.pv;
 public class MoveScore {
 
 	
-	public MoveScore(int intScore, String strMoveTo, String strMoveFrom, String strBoard, int intDepth){
-		this.intScore=intScore;
+	public MoveScore(long lnScore, String strMoveTo, String strMoveFrom, String strBoard, int intDepth, String strPlayer, String strKey, String strParentKey){
+		this.lnScore=lnScore;
 		this.strMoveTo=strMoveTo;
 		this.strMoveFrom=strMoveFrom;
 		this.strBoard=strBoard;
 		this.intDepth=intDepth;
+		this.strPlayer=strPlayer;
+		this.strKey=strKey;
+		this.strParentKey=strParentKey;
+		
+		
 	}
 	
-	int intScore=0;
-	int intDepth=0;
-	String strMoveTo="";
-	String strMoveFrom="";
+	private long lnScore=0;
+	private int intDepth=0;
+	private String strMoveTo="";
+	private String strMoveFrom="";
 	
-	String strBoard="";
+	private String strBoard="";
+	private String strPlayer="";
+	private String strKey="";
+	private String strParentKey="";
 	
 	
-	public int getScore(){
-		return this.intScore;
+	
+	public long getScore(){
+		return this.lnScore;
 	}
 	
-	public void setScore(int intScore){
-		this.intScore=intScore;
+	public void setScore(long lnScore){
+		this.lnScore=lnScore;
 	}
+	
+	
+	public String getPlayer(){
+		return this.strPlayer;
+	}
+	
+	public void setPlay(String strPlayer){
+		this.strPlayer=strPlayer;
+	}
+	
+	
+	public String getKey(){
+		return this.strKey;
+	}
+	
+	public void setKey(String strKey){
+		this.strKey=strKey;
+	}
+	
+	
+	public String getParentKey(){
+		return this.strParentKey;
+	}
+	
+	public void setParentKey(String strParentKey){
+		this.strParentKey=strParentKey;
+	}
+	
+	
 	
 	public String getMoveTo(){
 		return this.strMoveTo;
