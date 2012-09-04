@@ -20,6 +20,9 @@ public class BoardTest {
 			InputStreamReader converter = new InputStreamReader(System.in);
 			BufferedReader in = new BufferedReader(converter);
 
+			String strMoves="";
+			
+			
 			while (!(strNotation.equals("quit"))) {
 				try {
 					strNotation = in.readLine();
@@ -33,17 +36,21 @@ public class BoardTest {
 	
 					brd.Move(strNotation);
 					brd.renderBoard();
-
-					/*Engine eg = new Engine(brd.getBoardPosition());
-					System.out.println("NBM " + eg.getNextBestMove());
-					*/
+					strMoves=strMoves+" " + strNotation;
+					System.out.println("Moves :" + strMoves);
+					
+					
+					
+					
+					System.out.println("Thinking...");
+					System.out.flush();
 					
 					Engine eg = new Engine(brd.getBoardPosition());
-					
-					//System.out.println(eg.getNextBestMove());
-					
-					eg.getBestMove("Root");
-					
+					String strAutoMove=eg.getMovePos();
+					brd.Move(strAutoMove);
+					brd.renderBoard();
+					strMoves=strMoves+" " + strAutoMove;
+					System.out.println("Moves :" + strMoves);
 					
 					/*
 					List<MoveScore> mv = new ArrayList<MoveScore>();
